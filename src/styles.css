@@ -1,0 +1,15 @@
+.form-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: .5rem 1rem;
+}
+
+.full-width-container {
+  padding: 30px;
+  width: 100%;
+}
+
+.has-error .form-control,
+.has-error .form-control:focus {
+  border-color: #ed5565;
+}

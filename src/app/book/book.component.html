@@ -1,0 +1,147 @@
+<div class="form-wrapper">
+
+  <form [formGroup]="form"  >
+
+    <h3 class="mb-4">Book Info</h3>
+
+    <div class="form-group" [ngClass]="{'has-error': form.get('author').invalid && form.get('author').touched}">
+      <label for="author">Author</label>
+      <input *ngIf="!newUrl" class="form-control fvmsgfjhgsdjhgdjdfghhj" id="author" formControlName="author">
+      <input *ngIf="newUrl"   [(ngModel)]="book.author" class="form-control" id="author" formControlName="author">
+      <span
+        class="form-help-text"
+        *ngIf="form.get('author').invalid && form.get('author').touched"
+      >
+      Field cannot be empty.
+    </span>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': form.get('title').invalid && form.get('title').touched}">
+      <label for="title">Title</label>
+      <input *ngIf="!newUrl" class="form-control" id="title" formControlName="title">
+      <input *ngIf="newUrl"   [(ngModel)]="book.title" class="form-control" id="title" formControlName="title">
+      <span
+        class="form-help-text"
+        *ngIf="form.get('title').invalid && form.get('title').touched"
+      >
+      Field cannot be empty.
+    </span>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': form.get('isbn').invalid && form.get('isbn').touched}">
+      <label for="isbn">ISBN</label>
+      <input *ngIf="!newUrl" class="form-control" id="isbn" formControlName="isbn">
+      <input *ngIf="newUrl"   [(ngModel)]="book.isbn" class="form-control" id="isbn" formControlName="isbn">
+      <span
+        class="form-help-text"
+        *ngIf="form.get('isbn').invalid && form.get('isbn').touched"
+      >
+      Field cannot be empty.
+    </span>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': form.get('pages').invalid && form.get('pages').touched}">
+      <label for="pages">Number of Pages</label>
+      <input *ngIf="!newUrl" class="form-control" id="pages" formControlName="pages" type="number"  min="0" step="1">
+      <input *ngIf="newUrl"   [(ngModel)]="book.pages"  class="form-control" id="pages" formControlName="pages" type="number"  min="0" step="1">
+      <span
+        class="form-help-text"
+        *ngIf="form.get('pages').invalid && form.get('pages').touched"
+      >
+      Field cannot be empty.
+    </span>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': form.get('formatId').invalid && form.get('formatId').touched}">
+      <label for="format">Format</label>
+      <select *ngIf="!newUrl" class="form-control"  id="format" formControlName="formatId"  [(ngModel)]="selectedFormates">
+        <option *ngFor="let item of formate" [value]="item.id">{{item.name}}</option>
+      </select>
+      <select *ngIf="newUrl" class="form-control"  id="format" formControlName="formatId"  [(ngModel)]="book.formatId">
+        <option *ngFor="let item of formate" [value]="item.id">{{item.name}}</option>
+      </select>
+      <span
+        class="form-help-text"
+        *ngIf="form.get('formatId').invalid && form.get('formatId').touched"
+      >
+      Field cannot be empty.
+    </span>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': form.get('description').invalid && form.get('description').touched}">
+      <label for="description">Description</label>
+      <textarea *ngIf="!newUrl" class="form-control" id="description" rows="3" formControlName="description"></textarea>
+      <textarea  *ngIf="newUrl"   [(ngModel)]="book.description" class="form-control" id="description" rows="3" formControlName="description"></textarea>
+      <span
+        class="form-help-text"
+        *ngIf="form.get('description').invalid && form.get('description').touched"
+      >
+      Field cannot be empty.
+    </span>
+    </div>
+
+    <div class="form-group" [ngClass]="{'has-error': form.get('price').invalid && form.get('price').touched}">
+      <label for="price">Price</label>
+      <input *ngIf="!newUrl"  class="form-control" id="price" formControlName="price" type="number" min="0" step="1">
+      <input *ngIf="newUrl"   [(ngModel)]="book.price"  class="form-control" id="price" formControlName="price" type="number" min="0" step="1">
+      <span
+        class="form-help-text"
+        *ngIf="form.get('price').invalid && form.get('price').touched"
+      >
+      Field cannot be empty.
+    </span>
+    </div>
+
+    <hr class="m-1 mb-5 mt-5">
+
+    <h3 class="mb-4">Publisher Info</h3>
+
+    <div class="form-group" [ngClass]="{'has-error': form.get('countryId').invalid && form.get('countryId').touched}">
+      <label for="country">Country</label>
+      <select  *ngIf="!newUrl"  class="form-control" id="country" formControlName="countryId" [(ngModel)]="selectedCountry">
+        <option *ngFor="let item of country" [value]="item.id">{{item.name}}</option>
+      </select >
+      <select  *ngIf="newUrl"  class="form-control" id="country" formControlName="countryId" [(ngModel)]="book.countryId">
+        <option *ngFor="let item of country" [value]="item.id">{{item.name}}</option>
+      </select >
+      <span
+        class="form-help-text"
+        *ngIf="form.get('countryId').invalid && form.get('countryId').touched"
+      >
+      Field cannot be empty.
+    </span>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': form.get('cityId').invalid && form.get('cityId').touched}">
+      <label for="city">City</label>
+      <select  *ngIf="!newUrl" class="form-control" id="city" formControlName="cityId"  [(ngModel)]="selectedCity">
+        <option *ngFor="let item of city" [value]="item.id">{{item.name}}</option>
+      </select>
+      <select  *ngIf="newUrl" class="form-control" id="city" formControlName="cityId"  [(ngModel)]="book.cityId">
+        <option *ngFor="let item of city" [value]="item.id">{{item.name}}</option>
+      </select>
+      <span
+        class="form-help-text"
+        *ngIf="form.get('cityId').invalid && form.get('cityId').touched"
+      >
+      Field cannot be empty.
+    </span>
+    </div>
+    <div class="form-group" [ngClass]="{'has-error': form.get('companyId').invalid && form.get('companyId').touched}">
+      <label for="company">Company</label>
+      <select *ngIf="!newUrl" class="form-control" id="company" formControlName="companyId"  [(ngModel)]="selectedCompany">
+        <option *ngFor="let item of company" [value]="item.id">{{item.name}}</option>
+      </select>
+      <select *ngIf="newUrl" class="form-control" id="company" formControlName="companyId"  [(ngModel)]="book.companyId">
+        <option *ngFor="let item of company" [value]="item.id">{{item.name}}</option>
+      </select>
+      <span
+        class="form-help-text"
+        *ngIf="form.get('companyId').invalid && form.get('companyId').touched"
+      >
+      Field cannot be empty.
+    </span>
+    </div>
+    <button type="submit" class="btn btn-primary mt-4" [disabled]="form.invalid" (click)="onCreate(form.value)" >Submit</button>
+  </form>
+
+</div>
